@@ -45,6 +45,7 @@ public class UtilisateurService implements UserDetailsService {
 
         utilisateur = this.utilisateurRepository.save(utilisateur);
         this.validationService.enregistrer(utilisateur);
+
     }
 
     public void activation(Map<String, String> activation) {
@@ -62,4 +63,8 @@ public class UtilisateurService implements UserDetailsService {
         return  this.utilisateurRepository.findByEmail(username).orElseThrow(()-> new UsernameNotFoundException("Utilisateur introuvable"));
 
     }
+
+
+
+
 }

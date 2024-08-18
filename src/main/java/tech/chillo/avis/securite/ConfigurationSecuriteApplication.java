@@ -20,6 +20,11 @@ import static org.springframework.http.HttpMethod.POST;
 @EnableWebSecurity
 public class ConfigurationSecuriteApplication{
 
+
+
+
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return
@@ -30,6 +35,7 @@ public class ConfigurationSecuriteApplication{
                                         authorize
                                                 .requestMatchers(POST,"/inscription").permitAll()
                                                 .requestMatchers(POST,"/activation").permitAll()
+                                                .requestMatchers(POST,"/connexion").permitAll()
                                                 .anyRequest().authenticated()
                         ).build();
     }
@@ -41,14 +47,15 @@ public class ConfigurationSecuriteApplication{
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 
-
         return  authenticationConfiguration.getAuthenticationManager();
+
     }
    /* @Bean
     public UserDetailsService userDetailsService(){
 
         return new UtilisateurService();
     }*/
+
     @Bean
     public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {
         DaoAuthenticationProvider daoauthenticationProvider = new DaoAuthenticationProvider();
